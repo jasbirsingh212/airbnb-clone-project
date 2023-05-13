@@ -1,12 +1,12 @@
-import './App.css'
+import "./App.css";
+import Header from "./components/Header";
 
-const App = ()  => {
-
+const App = () => {
   return (
-    <>
-      <h1 className="text-indigo-500">AIRBNB</h1>
-    </>
+    <div className="App">
+      <Header />
+    </div>
   );
-}
+};
 
-export default App
+export default App;
