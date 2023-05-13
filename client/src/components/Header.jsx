@@ -2,6 +2,7 @@ import React from "react";
 import { FaAirbnb, FaUserCircle } from "react-icons/fa";
 import { BiSearch, BiGlobe, BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 const Header = () => {
   return (
@@ -27,10 +28,15 @@ const Header = () => {
         <div className="flex justify-between items-center gap-4">
           <div className="font-semibold text-sm">Airbnb your home</div>
           <BiGlobe className="w-5 h-5" />
-          <div className="flex justify-between items-center px-3 py-2 border border-gray-200 rounded-full">
-            <BiMenu className="h-6 w-6" />
-            <FaUserCircle className="ml-3 h-9 w-9" />
-          </div>
+          <Dropdown>
+            <div
+              role="input"
+              className="flex shadow hover:shadow-md justify-between items-center px-3 py-2 border border-gray-200 rounded-full"
+            >
+              <BiMenu className="h-6 w-6" />
+              <FaUserCircle className="ml-3 h-9 w-9" />
+            </div>
+          </Dropdown>
         </div>
       </div>
     </header>
