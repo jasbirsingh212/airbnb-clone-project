@@ -2,15 +2,15 @@ export const userDropdownWithoutAuthLinksData = [
   {
     id: 0,
     link: "Log in",
-        path: "",
-    className: 'font-bold'
+    path: "/login",
+    className: "font-bold",
   },
 
   {
     id: 1,
     link: "Sign up",
-      path: "",
-    className: 'border-b'
+    path: "/register",
+    className: "border-b",
   },
 
   {
