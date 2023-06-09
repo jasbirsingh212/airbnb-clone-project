@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Register = () => {
   return (
     <div className="flex flex-col items-center justify-center mt-12">
-      <div className="border border-gray-300 p-6 w-2/6 rounded-xl">
+      <div className="border border-gray-300 p-6 w-2/6 rounded-xl shadow-lg">
         <h1 className="text-4xl mb-6 text-center text-primary">Register</h1>
         <form autoComplete="off">
           <div className="flex flex-col mb-5">
