@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import customAxios from './../utills/axios';
-
+//qWv0FgC1dEdgQqVv;
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ const Register = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await customAxios.get("/register", {
+      const res = await customAxios.post("/register", {
         name,
         email,
         password,
