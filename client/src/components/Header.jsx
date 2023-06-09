@@ -20,8 +20,7 @@ const Header = () => {
           <div className="flex gap-4 items-center pl-4">
             <span className="font-normal text-gray-500">Add guests</span>
             <BiSearch
-              style={{ strokeWidth: 1 }}
-              className="bg-primary text-white mt-0.5 w-8 h-8 p-2 rounded-full"
+              className="bg-primary text-white mt-0.5 w-8 h-8 p-2 rounded-full stroke-1"
             />
           </div>
         </div>
