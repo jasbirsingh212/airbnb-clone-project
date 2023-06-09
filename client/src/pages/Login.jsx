@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="flex flex-col items-center justify-center mt-16">
+    <div className="flex flex-col items-center justify-center mt-20">
       <div className="border border-gray-300 p-6 w-2/6 rounded-xl">
         <h1 className="text-4xl mb-6 text-center text-primary">Login</h1>
         <form autoComplete="off">
