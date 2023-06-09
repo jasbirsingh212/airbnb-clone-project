@@ -7,7 +7,7 @@ import Dropdown from "./Dropdown";
 const Header = () => {
   return (
     <header>
-      <div className="flex items-center justify-around p-4 border">
+      <div className="flex items-center justify-between p-4 border">
         <Link to="/" className="flex items-center gap-1 text-primary">
           <FaAirbnb className="w-9 h-9" />
           <span className="max-md:hidden md:block text-xl font-bold">
