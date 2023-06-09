@@ -4,7 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': "#FF385C",
+        primary: "#FF385C",
+      },
+      boxShadow: {
+        input: "0 0 0 1px #FF385C",
       },
     },
   },
