@@ -35,7 +35,7 @@ const Register = () => {
             Register
           </button>
           <div className="flex justify-center gap-1 mt-2">
-            <p className="">Have an account with us ? </p>
+            <p className="">Already have an account with us ? </p>
             <Link
               className="text-primary hover:text-blue-600 active:text-blue-800"
               to="/login"
