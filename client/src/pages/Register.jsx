@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import customAxios from './../utills/axios';
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -7,7 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
 
   const handleInputChanges = (type, e) => {
-    const {value} = e?.target;
+    const { value } = e?.target;
 
     switch (type) {
       case "name":
@@ -16,20 +17,26 @@ const Register = () => {
       case "email":
         setEmail(value);
         break;
-      case "password":
+      default:
         setPassword(value);
         break;
-
-      default:
-        break;
     }
-  }
+  };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    
+    try {
+      const res = await customAxios.get("/register", {
+        name,
+        email,
+        password,
+      });
 
-  }
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center mt-12">

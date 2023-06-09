@@ -1,10 +1,14 @@
 import { Route, Routes } from "react-router-dom";
+
 import "./App.css";
-import Header from "./components/Header";
+
+import Layout from "./components/Layout";
+
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Layout from "./components/Layout";
+
+import './utills/axios/index.js';
 
 const App = () => {
   return (
