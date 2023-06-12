@@ -94,14 +94,16 @@ app.post("/login", async (req, res) => {
       const isPasswordSame = await bcrypt.compare(password, hashedPassword);
 
       if (isPasswordSame) {
-        const token = await jwt.sign(
+        const token = jwt.sign(
           {
             email,
             name,
             id,
           },
           jwtSecret,
-          { expiresIn: "24h" }
+          {
+            expiresIn: '24h'
+          }
         );
 
         return res.cookie("token", token).send({ name, email, id });
@@ -116,11 +118,19 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get('/profile', (req, res) => {
-  
-    
+app.get("/profile", async (req, res) => {
+  const { token } = req.cookies;
 
+  if (!token) return res.status(403).send("Log In");
 
-})
+  try {
+    const userData = jwt.verify(token, jwtSecret);
+    const { name, email, _id: id } = await User.findById(userData.id);
+    return res.send({ name, email, id });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).send(error.message);
+  }
+});
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
