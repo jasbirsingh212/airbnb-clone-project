@@ -41,7 +41,8 @@ app.post("/register", async (req, res) => {
   console.log("SALT", getSalt);
 
   try {
-    const encryptedPassword = await bcrypt.hash(password, getSalt);
+    const encryptedPassword =
+      password && (await bcrypt.hash(password, getSalt));
     const exists = await User.find({
       email,
     });
@@ -49,7 +50,9 @@ app.post("/register", async (req, res) => {
     console.log("Exists", exists);
 
     if (exists?.length > 0) {
-      return res.status(303).send(`User Alreary Exists with email: ${email}. Try other email!`);
+      return res
+        .status(303)
+        .send(`User Alreary Exists with email: ${email}. Try other email!`);
     }
 
     await User.create({
@@ -58,14 +61,11 @@ app.post("/register", async (req, res) => {
       password: encryptedPassword,
     });
 
-    
-    return res.status(200).send("User Registerd Successfully !")
-
+    return res.status(200).send("User Registerd Successfully !");
   } catch (error) {
     console.log("Something Went Wrong !", error);
-    res.send(error);
+    res.status(400).send(error.message);
   }
-
 });
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
