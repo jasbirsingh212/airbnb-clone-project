@@ -1,17 +1,53 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import customAxios from "./../utills/axios";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleInputChanges = (type, e) => {
+    const { value } = e?.target;
+
+    switch (type) {
+      case "email":
+        setEmail(value);
+        break;
+      default:
+        setPassword(value);
+        break;
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await customAxios.post("/login", {
+        email,
+        password,
+      });
+
+      console.log(res);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center mt-20">
       <div className="border border-gray-300 p-6 w-2/6 rounded-xl shadow-lg">
         <h1 className="text-4xl mb-6 text-center text-primary">Login</h1>
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={handleLogin}>
           <div className="flex flex-col mb-5">
             <label className="mb-1">Enter Your Email :</label>
             <input
               className="border border-gray-300 p-2 rounded-full focus:border-primary focus:outline-none focus:shadow-input"
               type="email"
+              value={email}
+              onChange={(e) => handleInputChanges("email", e)}
               placeholder="eg: youremail@gmail.com"
             />
           </div>
@@ -20,6 +56,8 @@ const Login = () => {
             <input
               className="border border-gray-300 p-2 rounded-full focus:border-primary focus:outline-none focus:shadow-input"
               type="password"
+              value={password}
+              onChange={(e) => handleInputChanges("password", e)}
               placeholder="eg: yourname@123#"
             />
           </div>

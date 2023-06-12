@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import customAxios from "./../utills/axios";
 import Alert from "../components/Alert";
-//qWv0FgC1dEdgQqVv;
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
