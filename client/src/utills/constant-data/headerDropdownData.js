@@ -16,7 +16,7 @@ export const userDropdownWithAuthLinksData = [
     id: 0,
     link: "Log Out",
     path: "",
-    className: "font-bold",
+    className: "font-bold border-b",
   },
   ...otherDropdownLinksData,
 ];
