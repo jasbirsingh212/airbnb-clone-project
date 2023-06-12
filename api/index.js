@@ -3,6 +3,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const { User } = require("./schema/User.js");
 
@@ -11,8 +13,10 @@ dotenv.config();
 const app = express();
 
 const getSalt = bcrypt.genSaltSync(10);
+const jwtSecret = process.env.JWT_SECRET;
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(
   cors({
@@ -72,31 +76,35 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-
-    if(!email){
-     return res.status(401).send("Please provide Email Address!");
+    if (!email) {
+      return res.status(401).send("Please provide Email Address!");
     }
-    
 
     const userDoc = await User.findOne({
       email,
     });
 
-
-
-    const { name, _id, password: hashedPassword } = await userDoc;
+    const { name, _id: id, password: hashedPassword } = await userDoc;
 
     if (userDoc?.email) {
-
-      if(!password){
+      if (!password) {
         return res.status(401).send("Please provide Password!");
       }
 
       const isPasswordSame = await bcrypt.compare(password, hashedPassword);
-      
 
       if (isPasswordSame) {
-        return res.send({ name, email, id: _id });
+        const token = await jwt.sign(
+          {
+            email,
+            name,
+            id,
+          },
+          jwtSecret,
+          { expiresIn: "24h" }
+        );
+
+        return res.cookie("token", token).send({ name, email, id });
       } else {
         return res.status(401).send("Password doesn't match!.");
       }
@@ -107,5 +115,12 @@ app.post("/login", async (req, res) => {
     return res.status(400).send(error.message);
   }
 });
+
+app.get('/profile', (req, res) => {
+  
+    
+
+
+})
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
