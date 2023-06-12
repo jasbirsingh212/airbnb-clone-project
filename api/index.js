@@ -68,4 +68,44 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+
+    if(!email){
+     return res.status(401).send("Please provide Email Address!");
+    }
+    
+
+    const userDoc = await User.findOne({
+      email,
+    });
+
+
+
+    const { name, _id, password: hashedPassword } = await userDoc;
+
+    if (userDoc?.email) {
+
+      if(!password){
+        return res.status(401).send("Please provide Password!");
+      }
+
+      const isPasswordSame = await bcrypt.compare(password, hashedPassword);
+      
+
+      if (isPasswordSame) {
+        return res.send({ name, email, id: _id });
+      } else {
+        return res.status(401).send("Password doesn't match!.");
+      }
+    } else {
+      res.status(404).send("No User Found! . Please register First");
+    }
+  } catch (error) {
+    return res.status(400).send(error.message);
+  }
+});
+
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
