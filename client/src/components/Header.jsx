@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaAirbnb, FaUserCircle } from "react-icons/fa";
 import { BiSearch, BiGlobe, BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
+import { UserContext } from "../utills/context";
 
 const Header = () => {
+  const { user } = useContext(UserContext);
+
   return (
     <header>
       <div className="flex items-center justify-between p-4 border">
@@ -19,9 +22,7 @@ const Header = () => {
           <div className="pl-4 h-8 pt-1.5 font-semibold text-sm ">Any week</div>
           <div className="flex gap-4 items-center pl-4">
             <span className="font-normal text-gray-500">Add guests</span>
-            <BiSearch
-              className="bg-primary text-white mt-0.5 w-8 h-8 p-2 rounded-full stroke-1"
-            />
+            <BiSearch className="bg-primary text-white mt-0.5 w-8 h-8 p-2 rounded-full stroke-1" />
           </div>
         </div>
         <div className="flex justify-between items-center gap-4">
@@ -30,10 +31,13 @@ const Header = () => {
           <Dropdown>
             <div
               role="input"
-              className="flex shadow hover:shadow-md justify-between items-center px-3 py-2 border border-gray-200 rounded-full"
+              className="max-w-xs flex gap-2 shadow hover:shadow-md justify-between items-center px-3 py-2 border border-gray-200 rounded-full"
             >
               <BiMenu className="h-6 w-6" />
-              <FaUserCircle className="ml-3 h-9 w-9" />
+              <FaUserCircle className="h-9 w-9" />
+              {user?.name && (
+                <p className=" truncate">{user?.name}</p>
+              )}
             </div>
           </Dropdown>
         </div>
