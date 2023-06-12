@@ -7,7 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example({ children }) {
+export default function Example({ children, data=[], user=null }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -25,8 +25,8 @@ export default function Example({ children }) {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {userDropdownWithoutAuthLinksData?.length > 0 &&
-              userDropdownWithoutAuthLinksData.map(({ id, link, path, className='' }) => {
+            {data?.length > 0 &&
+              data.map(({ id, link, path, className='' }) => {
                 return (
                   <Menu.Item key={id}>
                     {({ active }) => (
@@ -40,7 +40,7 @@ export default function Example({ children }) {
                           `${className}`
                         )}
                       >
-                        {link}
+                        {link === "Log Out" ? `${link} ${user?.email}` : link}
                       </Link>
                     )}
                   </Menu.Item>

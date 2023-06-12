@@ -4,6 +4,7 @@ import { BiSearch, BiGlobe, BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { UserContext } from "../utills/context";
+import { userDropdownWithAuthLinksData, userDropdownWithoutAuthLinksData } from "../utills/constant-data/headerDropdownData";
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -28,7 +29,7 @@ const Header = () => {
         <div className="flex justify-between items-center gap-4">
           <div className="font-semibold text-sm">Airbnb your home</div>
           <BiGlobe className="w-5 h-5" />
-          <Dropdown>
+          <Dropdown data={user ? userDropdownWithAuthLinksData : userDropdownWithoutAuthLinksData} user={user}>
             <div
               role="input"
               className="max-w-xs flex gap-2 shadow hover:shadow-md justify-between items-center px-3 py-2 border border-gray-200 rounded-full"

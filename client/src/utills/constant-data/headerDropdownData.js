@@ -1,3 +1,25 @@
+export const otherDropdownLinksData = [
+  {
+    id: 2,
+    link: "Airbnb your home",
+    path: "",
+  },
+  {
+    id: 3,
+    link: "help",
+    path: "",
+  },
+];
+
+export const userDropdownWithAuthLinksData = [
+  {
+    id: 0,
+    link: "Log Out",
+    path: "",
+    className: "font-bold",
+  },
+  ...otherDropdownLinksData,
+];
 export const userDropdownWithoutAuthLinksData = [
   {
     id: 0,
@@ -13,14 +35,5 @@ export const userDropdownWithoutAuthLinksData = [
     className: "border-b",
   },
 
-  {
-    id: 2,
-    link: "Airbnb your home",
-    path: "",
-  },
-  {
-    id: 3,
-    link: "help",
-    path: "",
-  },
+  ...otherDropdownLinksData,
 ];
