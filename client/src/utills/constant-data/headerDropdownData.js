@@ -13,12 +13,18 @@ export const otherDropdownLinksData = [
 
 export const userDropdownWithAuthLinksData = [
   {
-    id: 0,
-    link: "Log Out",
-    path: "",
+    id: 1,
+    link: "My Account",
+    path: "/account",
     className: "font-bold border-b",
   },
   ...otherDropdownLinksData,
+  {
+    id: 0,
+    link: "Log Out",
+    path: "",
+    className: "font-bold",
+  },
 ];
 export const userDropdownWithoutAuthLinksData = [
   {
