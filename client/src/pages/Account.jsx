@@ -3,9 +3,11 @@ import { UserContext } from "../utills/context";
 import { Navigate } from "react-router-dom";
 
 const Account = () => {
-  const { user } = useContext(UserContext);
+  const { user, ready } = useContext(UserContext);
 
-  if(!user) return <Navigate to="/login" />;
+  if(!ready) return <p className="text-4xl">Loading ...</p>
+
+  if(ready && !user) return <Navigate to="/login" />;
 
   return <div>Account</div>;
 };
