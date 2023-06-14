@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import customAxios from "./../axios/index";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({});
 
@@ -8,13 +9,18 @@ const ContextProvider = ({ children }) => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const ApiCall = async () => {
-      const { data } = await customAxios.get("/profile");
-      setUser(data);
-      setReady(true);
-    };
-
-    if (!user) ApiCall();
+    customAxios
+      .get("/profile")
+      .then(({ data }) => {
+        setUser(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setUser(null);
+      })
+      .finally(() => {
+        setReady(true);
+      });
   }, []);
 
   return (
@@ -22,7 +28,7 @@ const ContextProvider = ({ children }) => {
       value={{
         user,
         setUser,
-        ready
+        ready,
       }}
     >
       {children}
