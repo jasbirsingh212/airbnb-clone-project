@@ -133,4 +133,8 @@ app.get("/profile", async (req, res) => {
   }
 });
 
+app.post('/logout', async(req, res) => {
+    res.cookie("token", "").send()
+})
+
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
