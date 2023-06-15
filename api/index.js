@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
 const { User } = require("./schema/User.js");
+const { Place } = require("./schema/Place.js");
 
 dotenv.config();
 
@@ -102,7 +103,7 @@ app.post("/login", async (req, res) => {
           },
           jwtSecret,
           {
-            expiresIn: '24h'
+            expiresIn: "24h",
           }
         );
 
@@ -133,8 +134,8 @@ app.get("/profile", async (req, res) => {
   }
 });
 
-app.post('/logout', async(req, res) => {
-    res.cookie("token", "").send()
-})
+app.post("/logout", async (req, res) => {
+  res.cookie("token", "").send();
+});
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
