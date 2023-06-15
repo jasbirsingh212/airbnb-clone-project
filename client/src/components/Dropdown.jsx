@@ -4,7 +4,7 @@ import { UserContext } from "../utills/context";
 import customAxios from "./../utills/axios";
 
 const Dropdown = ({ children, data = [], user = null }) => {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setReady } = useContext(UserContext);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,6 +17,7 @@ const Dropdown = ({ children, data = [], user = null }) => {
       await customAxios.post("/logout");
       setUser(null);
       navigate("/");
+      setReady(false);
     } catch (error) {
       console.log(error);
     }
