@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "./Input";
 import TextArea from "./TextArea";
+import PhotoUploader from "./PhotoUploader";
 
 const PlacesForm = () => {
   const handleSubmit = (e) => {};
@@ -10,9 +11,7 @@ const PlacesForm = () => {
   return (
     <div className="border border-gray-200 w-7/12 px-6 py-8 rounded-md shadow-md">
       <div className="">
-        <h1 className="text-4xl mb-12 text-center text-primary">
-          Place Info
-        </h1>
+        <h1 className="text-4xl mb-12 text-center text-primary">Place Info</h1>
         <form autoComplete="off" onSubmit={handleSubmit}>
           <Input
             label={"Title :"}
@@ -30,6 +29,7 @@ const PlacesForm = () => {
             type={"text"}
             placeholder={"address, for example: Tilak Nagar New Delhi"}
           />
+          <PhotoUploader label={"Photos"} desscription={"Add photos of the place"} />
           <TextArea
             label={"Description :"}
             descriptions={"description of the place"}
