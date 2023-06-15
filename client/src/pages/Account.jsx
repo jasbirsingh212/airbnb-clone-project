@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../utills/context";
 import { Navigate, Link } from "react-router-dom";
 import Profile from "../components/Profile";
+import Accommodations from "../components/Accommodations";
 
 const Account = () => {
   const { user, ready } = useContext(UserContext);
@@ -12,8 +13,8 @@ const Account = () => {
   if (ready && !user) return <Navigate to="/login" />;
 
   const handleClick = (e, index) => {
-    setActive(index)
-  }
+    setActive(index);
+  };
 
   return (
     <div className="flex flex-col items-center mt-4">
@@ -43,10 +44,10 @@ const Account = () => {
           My Accommodations
         </button>
       </div>
-      <div className="mt-12">
-        {active === 0 && <div><Profile /></div>}
+      <div className="mt-12 w-full">
+        {active === 0 && <Profile />}
         {active === 1 && <div>my booking</div>}
-        {active === 2 && <div>my Accommodations</div>}
+        {active === 2 && <Accommodations />}
       </div>
     </div>
   );
