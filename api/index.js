@@ -122,7 +122,7 @@ app.post("/login", async (req, res) => {
 app.get("/profile", async (req, res) => {
   const { token } = req.cookies;
 
-  if (!token) return res.status(403).send("Log In");
+  if (!token) return res.status(403).send(null);
 
   try {
     const userData = jwt.verify(token, jwtSecret);
