@@ -29,7 +29,10 @@ const PlacesForm = () => {
             type={"text"}
             placeholder={"address, for example: Tilak Nagar New Delhi"}
           />
-          <PhotoUploader label={"Photos"} desscription={"Add photos of the place"} />
+          <PhotoUploader
+            label={"Photos"}
+            desscription={"Add photos of the place"}
+          />
           <TextArea
             label={"Description :"}
             descriptions={"description of the place"}
